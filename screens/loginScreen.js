@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { View, TextInput, Button, Text, ActivityIndicator  } from 'react-native';
+import { View, TextInput, Button, Text, ActivityIndicator } from 'react-native';
 import LoginViewModel from '../viewmodels/loginViewModel';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const LoginScreen = ({ navigation }) => {
     const [login, setLogin] = useState('');
@@ -16,7 +17,8 @@ const LoginScreen = ({ navigation }) => {
             const result = await viewModel.login(login, password);
             setIsLoading(false);
             if (result && result.success) {
-                navigation.navigate('Home');
+                console.log('Login successful! Navigating to MainScreen...');
+                navigation.navigate('Main');
             } else {
                 setError('Неверный логин или пароль');
             }

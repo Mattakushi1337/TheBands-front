@@ -1,5 +1,6 @@
 import UserService from '../services/userService';
 
+
 class LoginViewModel {
     constructor() {
         this.userService = new UserService();
