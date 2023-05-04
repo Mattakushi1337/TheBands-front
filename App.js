@@ -8,6 +8,8 @@ import PeopleScreen from './screens/peopleScreen';
 import ProfileScreen from './screens/profileScreen';
 import BandsScreen from './screens/bandsScreen';
 import CreateFormScreen from './screens/createFormScreen';
+import FormDetailsScreen from './screens/formDetailsScreen';
+import MyFormScreen from './screens/myFormScreen';
 
 
 const Stack = createStackNavigator();
@@ -23,6 +25,8 @@ export default function App() {
         <Stack.Screen name="Profile" component={ProfileScreen} />
         <Stack.Screen name="Band" component={BandsScreen} />
         <Stack.Screen name="CreateForm" component={CreateFormScreen} />
+        <Stack.Screen name="FormDetails" component={FormDetailsScreen} />
+        <Stack.Screen name="MyForm" component={MyFormScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -9,17 +9,14 @@ class PeopleViewModel {
 
     constructor() {
         makeAutoObservable(this);
-        this.checkFormExists();
     }
 
     async checkFormExists() {
         try {
-            const response = await fetch('http://192.168.1.103:3000/form/form/myForm');
-            const data = await response.json();
+            const response = await axios.get('http://192.168.1.103:3000/form/form/myForm');
             runInAction(() => {
-                this.hasForm = data.hasForm;
+                this.hasForm = response.data.hasForm;
             });
-
         } catch (error) {
             console.error(error);
         }
@@ -28,11 +25,10 @@ class PeopleViewModel {
     async getForms() {
         try {
             this.isLoading = true;
-            const response = await axios.get('http://192.168.1.103:3000/form/all');
+            const response = await axios.get('http://192.168.1.103:3000/form/form/all');
             runInAction(() => {
                 this.forms = response.data;
             });
-
         } catch (error) {
             this.error = 'Failed to get forms';
             console.error(error);
