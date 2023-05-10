@@ -1,25 +1,27 @@
-import React, { useEffect } from 'react';
-import { View, Text, FlatList, ActivityIndicator } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, Text, FlatList, ActivityIndicator, TouchableOpacity } from 'react-native';
 import { Button } from 'react-native-elements';
 import { useNavigation } from '@react-navigation/native';
 import { observer } from 'mobx-react';
 import BandsViewModel from '../viewmodels/bandsViewModel';
 
+
 const BandsScreen = observer(() => {
     const navigation = useNavigation();
-    const { bands, isLoading, error, getBands } = new BandsViewModel();
+    const [bandsViewModel] = useState(new BandsViewModel());
 
     useEffect(() => {
-        getBands();
+        bandsViewModel.getBands();
     }, []);
 
     const renderItem = ({ item }) => (
-        <View style={{ marginBottom: 20 }}>
+        <TouchableOpacity
+            onPress={() => navigation.navigate('BandDetails', { band: item })}
+            style={{ marginBottom: 20 }}
+        >
             <Text>{`Name: ${item.bandName}`}</Text>
-            <Text>{`Description: ${item.description}`}</Text>
-        </View>
+        </TouchableOpacity>
     );
-
     const renderCreateBandButton = () => {
         return (
             <Button
@@ -31,13 +33,13 @@ const BandsScreen = observer(() => {
 
     return (
         <View>
-            {isLoading ? (
+            {bandsViewModel.isLoading ? (
                 <ActivityIndicator size="large" />
-            ) : error ? (
-                <Text style={{ color: 'red' }}>{error}</Text>
+            ) : bandsViewModel.error ? (
+                <Text style={{ color: 'red' }}>{bandsViewModel.error}</Text>
             ) : (
                 <FlatList
-                    data={bands}
+                    data={bandsViewModel.bands}
                     renderItem={renderItem}
                     keyExtractor={(item) => item.id.toString()}
                 />
@@ -47,4 +49,4 @@ const BandsScreen = observer(() => {
     );
 });
 
-export default BandsScreen;
+export default BandsScreen

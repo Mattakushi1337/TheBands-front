@@ -18,8 +18,9 @@ const ProfileScreen = observer(() => {
         <View>
             <Text>{`Имя пользователя: ${profileViewModel.user.userName}`}</Text>
             <Text>{`Логин: ${profileViewModel.user.login}`}</Text>
-            <Button title="Выйти из аккаунта" onPress={async () => await profileViewModel.logout()} />
             <Button title="Посмотреть свою анкету музыканта" onPress={() => navigation.navigate('MyForm')} />
+            <Button title="Посмотреть свою анкету группы" onPress={() => navigation.navigate('MyBand')} />
+            <Button title="Выйти из аккаунта" onPress={async () => await profileViewModel.logout()} />
         </View>
     );
 });

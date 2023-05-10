@@ -10,6 +10,11 @@ import BandsScreen from './screens/bandsScreen';
 import CreateFormScreen from './screens/createFormScreen';
 import FormDetailsScreen from './screens/formDetailsScreen';
 import MyFormScreen from './screens/myFormScreen';
+import EditFormScreen from './screens/editFormScreen';
+import CreateBandScreen from './screens/createBandScreen';
+import BandDetailsScreen from './screens/bandDetailsScreen';
+import MyBandScreen from './screens/myBandScreen';
+import EditBandScreen from './screens/editBandScreen';
 
 
 const Stack = createStackNavigator();
@@ -27,6 +32,11 @@ export default function App() {
         <Stack.Screen name="CreateForm" component={CreateFormScreen} />
         <Stack.Screen name="FormDetails" component={FormDetailsScreen} />
         <Stack.Screen name="MyForm" component={MyFormScreen} />
+        <Stack.Screen name="EditForm" component={EditFormScreen} />
+        <Stack.Screen name="CreateBand" component={CreateBandScreen} />
+        <Stack.Screen name="BandDetails" component={BandDetailsScreen} />
+        <Stack.Screen name="MyBand" component={MyBandScreen} />
+        <Stack.Screen name="EditBand" component={EditBandScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
