@@ -15,6 +15,10 @@ import CreateBandScreen from './screens/createBandScreen';
 import BandDetailsScreen from './screens/bandDetailsScreen';
 import MyBandScreen from './screens/myBandScreen';
 import EditBandScreen from './screens/editBandScreen';
+import BandMembersScreen from './screens/bandMembersScreen';
+import ApplicationScreen from './screens/applicationScreen';
+import MyBandMembersScreen from './screens/myBandMembersScreen';
+import MyBandApplicationsScreen from './screens/myBandApplicationsScreen';
 
 
 const Stack = createStackNavigator();
@@ -37,6 +41,10 @@ export default function App() {
         <Stack.Screen name="BandDetails" component={BandDetailsScreen} />
         <Stack.Screen name="MyBand" component={MyBandScreen} />
         <Stack.Screen name="EditBand" component={EditBandScreen} />
+        <Stack.Screen name="BandMember" component={BandMembersScreen} />
+        <Stack.Screen name="Application" component={ApplicationScreen} />
+        <Stack.Screen name="MyBandMembers" component={MyBandMembersScreen} />
+        <Stack.Screen name="MyBandApplications" component={MyBandApplicationsScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

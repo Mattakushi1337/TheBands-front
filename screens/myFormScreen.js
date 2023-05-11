@@ -30,7 +30,11 @@ class MyFormScreen extends React.Component {
     };
 
     render() {
-        const { userName, age, city, gender, musicalInstrument, description, communication } = this.state.form;
+        const { form } = this.state;
+        if (!form || Object.keys(form).length === 0) {
+            return <Text>У вас пока нет анкеты</Text>;
+        }
+        const { userName, age, city, gender, musicalInstrument, description, communication } = form;
         return (
             <View>
                 <Text>{`UserName: ${userName}`}</Text>

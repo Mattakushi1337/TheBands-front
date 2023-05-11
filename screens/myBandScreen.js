@@ -6,7 +6,7 @@ class MyBandScreen extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            band: {},
+            band: null,
         };
     }
 
@@ -29,14 +29,34 @@ class MyBandScreen extends React.Component {
         this.props.navigation.navigate('EditBand', { userID: id });
     };
 
+    handleViewApplications = () => {
+        const { id } = this.state.band;
+        this.props.navigation.navigate('MyBandApplications', { bandId: id });
+    };
+
+    handleViewMembers = () => {
+        const { id } = this.state.band;
+        this.props.navigation.navigate('MyBandMembers', { bandId: id });
+    };
+
     render() {
-        const { bandName, description } = this.state.band;
+        const { band } = this.state;
+        if (!band) {
+            return (
+                <View>
+                    <Text>У вас пока нет группы</Text>
+                </View>
+            );
+        }
+        const { bandName, description } = band;
         return (
             <View>
                 <Text>{`Band Name: ${bandName}`}</Text>
                 <Text>{`Description: ${description}`}</Text>
                 <Button title="Delete" onPress={this.handleDelete} />
                 <Button title="Update" onPress={this.handleUpdate} />
+                <Button title="View Applications" onPress={this.handleViewApplications} />
+                <Button title="My Band Members" onPress={this.handleViewMembers} />
             </View>
         );
     }
