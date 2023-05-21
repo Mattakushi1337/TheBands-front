@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
-import { View, TextInput, Button, Text } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, TextInput, Button, Text, StyleSheet } from 'react-native';
 import RegisterViewModel from '../viewmodels/registerViewModel';
 import { useNavigation } from '@react-navigation/native';
+
+
 
 const RegisterScreen = () => {
     const [login, setLogin] = useState('');
@@ -14,7 +16,11 @@ const RegisterScreen = () => {
 
     const viewModel = new RegisterViewModel();
     const navigation = useNavigation();
-
+    useEffect(() => {
+        {
+            navigation.setOptions({ title: 'Регистрация' });
+        }
+    },);
     const handleRegister = async () => {
         if (login.length < 3) {
             setIsLoginValid(false);
@@ -47,6 +53,7 @@ const RegisterScreen = () => {
         if (result.success) {
             navigation.navigate('Login');
         }
+
     };
 
     const handleLoginPress = () => {
@@ -54,9 +61,10 @@ const RegisterScreen = () => {
     }
 
     return (
-        <View>
+        <View style={styles.container}>
             <TextInput
-                placeholder="Login"
+                placeholder="Логин"
+                style={styles.input}
                 onChangeText={setLogin}
                 value={login}
             />
@@ -69,7 +77,8 @@ const RegisterScreen = () => {
                 </Text>
             )}
             <TextInput
-                placeholder="Password"
+                placeholder="Пароль"
+                style={styles.input}
                 onChangeText={setPassword}
                 value={password}
                 secureTextEntry={true}
@@ -78,14 +87,21 @@ const RegisterScreen = () => {
                 <Text style={{ color: 'red' }}>Поле должно содержать минимум 3 символа</Text>
             )}
             <TextInput
-                placeholder="User Name"
-                onChangeText={setUserName}
+                style={styles.input}
+                placeholder="Имя"
+                keyboardType="default"
+                onChangeText={text => setUserName(text.replace(/\d/g, ''))}
                 value={userName}
             />
             {!isUserNameValid && (
                 <Text style={{ color: 'red' }}>Поле должно содержать минимум 3 символа</Text>
             )}
-            <Button title="Register" onPress={handleRegister} />
+            <Button
+                buttonStyle={styles.button}
+                title="Зарегистрироваться"
+                onPress={handleRegister}
+            />
+
             <Text style={{ marginTop: 10 }}>
                 Уже есть аккаунт?{' '}
                 <Text style={{ color: 'blue' }} onPress={handleLoginPress}>
@@ -95,5 +111,27 @@ const RegisterScreen = () => {
         </View>
     );
 };
+
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    button: {
+        backgroundColor: '#FFFFFF',
+        borderRadius: 15,
+        marginBottom: 10,
+    },
+    input: {
+        backgroundColor: '#FFFFFF',
+        padding: 1,
+        marginBottom: 5,
+        borderRadius: 10,
+        width: 300,
+    },
+});
+
 
 export default RegisterScreen;

@@ -1,14 +1,21 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 import { View, Text, Button } from 'react-native';
 import MyFormViewModel from '../viewmodels/myFormViewModel';
+import { useNavigation } from '@react-navigation/native';
+
+
+
+
 
 class MyFormScreen extends React.Component {
     constructor(props) {
         super(props);
+        this.props.navigation.setOptions({ title: 'Моя анкета музыканта' });
         this.state = {
             form: {},
         };
     }
+
 
     async componentDidMount() {
         const form = await new MyFormViewModel().getForm();
@@ -37,15 +44,15 @@ class MyFormScreen extends React.Component {
         const { userName, age, city, gender, musicalInstrument, description, communication } = form;
         return (
             <View>
-                <Text>{`UserName: ${userName}`}</Text>
-                <Text>{`Age: ${age}`}</Text>
-                <Text>{`City: ${city}`}</Text>
-                <Text>{`Gender: ${gender}`}</Text>
-                <Text>{`Musical Instrument: ${musicalInstrument}`}</Text>
-                <Text>{`Description: ${description}`}</Text>
-                <Text>{`Communication: ${communication}`}</Text>
-                <Button title="Delete" onPress={this.handleDelete} />
-                <Button title="Update" onPress={this.handleUpdate} />
+                <Text>{`Имя: ${userName}`}</Text>
+                <Text>{`Возраст: ${age}`}</Text>
+                <Text>{`Город: ${city}`}</Text>
+                <Text>{`Пол: ${gender}`}</Text>
+                <Text>{`Музыкальный инструмент: ${musicalInstrument}`}</Text>
+                <Text>{`Описание: ${description}`}</Text>
+                <Text>{`Способ связи: ${communication}`}</Text>
+                <Button title="Удалить" onPress={this.handleDelete} />
+                <Button title="Изменить" onPress={this.handleUpdate} />
             </View>
         );
     }

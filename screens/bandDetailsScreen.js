@@ -14,7 +14,7 @@ const BandDetailsScreen = () => {
 
     const handleJoinBand = async () => {
         if (role.trim() === '') {
-            setRoleError('Please enter a role');
+            setRoleError('Введите вашу роль в группе');
             return;
         }
 
@@ -38,7 +38,7 @@ const BandDetailsScreen = () => {
             <View style={styles.inputContainer}>
                 <TextInput
                     style={styles.input}
-                    placeholder="Enter your role"
+                    placeholder="Введите вашу роль в группе"
                     value={role}
                     onChangeText={text => {
                         setRole(text);
@@ -48,8 +48,8 @@ const BandDetailsScreen = () => {
                 {roleError !== '' && <Text style={styles.error}>{roleError}</Text>}
             </View>
             <View style={styles.buttonContainer}>
-                <Button title="Join Band" onPress={handleJoinBand} />
-                <Button title="View members" onPress={handleViewMembers} />
+                <Button title="Отправить заявку" onPress={handleJoinBand} />
+                <Button title="Посмотреть участников" onPress={handleViewMembers} />
             </View>
         </View>
     );
@@ -82,8 +82,6 @@ const styles = StyleSheet.create({
         fontSize: 16,
     },
     buttonContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-around',
         width: '80%',
     },
     error: {

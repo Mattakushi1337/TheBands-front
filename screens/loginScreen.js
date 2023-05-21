@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, TextInput, Button, Text, ActivityIndicator } from 'react-native';
+import { View, TextInput, Button, Text, ActivityIndicator, StyleSheet } from 'react-native';
 import LoginViewModel from '../viewmodels/loginViewModel';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -29,18 +29,21 @@ const LoginScreen = ({ navigation }) => {
     };
 
     useEffect(() => {
+        navigation.setOptions({ title: 'Авторизация' });
         setError('');
     }, [login, password]);
 
     return (
-        <View>
+        <View style={styles.container}>
             <TextInput
-                placeholder="Login"
+                placeholder="Логин"
+                style={styles.input}
                 onChangeText={setLogin}
                 value={login}
             />
             <TextInput
-                placeholder="Password"
+                placeholder="Пароль"
+                style={styles.input}
                 onChangeText={setPassword}
                 value={password}
                 secureTextEntry={true}
@@ -49,15 +52,39 @@ const LoginScreen = ({ navigation }) => {
                 <ActivityIndicator />
             ) : (
                 <Button
-                    title="Login"
+                    title="Войти"
                     onPress={handleLogin}
+                    style={styles.button}
                 />
             )}
             {error ? (
-                <Text style={{ color: 'red' }}>Неверный логин или пароль</Text>
+                <Text style={styles.errorText}>Неверный логин или пароль</Text>
             ) : null}
         </View>
     );
 };
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    button: {
+        backgroundColor: '#FFFFFF',
+        borderRadius: 15,
+        marginBottom: 10,
+    },
+    input: {
+        backgroundColor: '#FFFFFF',
+        padding: 1,
+        marginBottom: 5,
+        borderRadius: 10,
+        width: 300,
+    },
+    errorText: {
+        color: 'red',
+    },
+});
 
 export default LoginScreen;

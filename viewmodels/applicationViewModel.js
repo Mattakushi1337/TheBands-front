@@ -3,6 +3,7 @@ import axios from 'axios';
 class ApplicationViewModel {
     async getApplications(bandId) {
         const response = await axios.get(`http://192.168.1.103:3000/applications/${bandId}`);
+        console.log(response.data, bandId);
         return response.data;
     };
 

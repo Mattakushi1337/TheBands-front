@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, TextInput, Button } from 'react-native';
+import { View, TextInput, Button, StyleSheet } from 'react-native';
 import BandsViewModel from '../viewmodels/bandsViewModel';
 
 function EditBandScreen({ route, navigation }) {
@@ -9,16 +9,20 @@ function EditBandScreen({ route, navigation }) {
     const [band, setForm] = useState({
         bandName: '',
         description: '',
-        userID
+        userID,
     });
 
     useEffect(() => {
+        navigation.setOptions({ title: 'Изменение анкеты группы' });
         async function fetchBand() {
-            console.log("dd");
-            const band = await viewModel.getMyBand();
-            console.log('form from fetchForm:', band);
-            setForm({ ...band[0], bandName: band.bandName, description: band.description });
-
+            const bandData = await viewModel.getMyBand();
+            if (bandData) {
+                setForm({
+                    bandName: bandData.bandName,
+                    description: bandData.description,
+                    userID,
+                });
+            }
         }
         fetchBand();
     }, []);
@@ -34,14 +38,16 @@ function EditBandScreen({ route, navigation }) {
     };
 
     return (
-        <View>
+        <View style={styles.container}>
             <TextInput
-                placeholder="Band Name"
+                style={styles.input}
+                placeholder="Название группы"
                 value={band.bandName}
                 onChangeText={(value) => setForm({ ...band, bandName: value })}
             />
             <TextInput
-                placeholder="Description"
+                style={styles.input}
+                placeholder="Описание"
                 value={band.description}
                 onChangeText={(value) => setForm({ ...band, description: value })}
             />
@@ -49,5 +55,24 @@ function EditBandScreen({ route, navigation }) {
         </View>
     );
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        padding: 20,
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    input: {
+        width: '80%', // Или другое значение для равных размеров
+        height: 40,
+        borderWidth: 1,
+        borderColor: 'gray',
+        marginBottom: 10,
+        paddingHorizontal: 10,
+        borderRadius: 8,
+    },
+});
 
 export default EditBandScreen;

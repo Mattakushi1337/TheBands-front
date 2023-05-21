@@ -5,6 +5,7 @@ import BandsViewModel from '../viewmodels/bandsViewModel';
 class MyBandScreen extends React.Component {
     constructor(props) {
         super(props);
+        this.props.navigation.setOptions({ title: 'Моя анкета группы' });
         this.state = {
             band: null,
         };
@@ -51,12 +52,12 @@ class MyBandScreen extends React.Component {
         const { bandName, description } = band;
         return (
             <View>
-                <Text>{`Band Name: ${bandName}`}</Text>
-                <Text>{`Description: ${description}`}</Text>
-                <Button title="Delete" onPress={this.handleDelete} />
-                <Button title="Update" onPress={this.handleUpdate} />
-                <Button title="View Applications" onPress={this.handleViewApplications} />
-                <Button title="My Band Members" onPress={this.handleViewMembers} />
+                <Text>{`Имя группы: ${bandName}`}</Text>
+                <Text>{`Описание: ${description}`}</Text>
+                <Button title="Удалить" onPress={this.handleDelete} />
+                <Button title="Изменить" onPress={this.handleUpdate} />
+                <Button title="Просмотр заявок" onPress={this.handleViewApplications} />
+                <Button title="Участники моей группы" onPress={this.handleViewMembers} />
             </View>
         );
     }

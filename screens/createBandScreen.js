@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     View,
     Text,
@@ -9,6 +9,7 @@ import {
     StyleSheet,
 } from 'react-native';
 import BandsViewModel from '../viewmodels/bandsViewModel';
+import { useNavigation } from '@react-navigation/native';
 
 const CreateBandScreen = () => {
     const [bandName, setBandName] = useState('');
@@ -17,6 +18,14 @@ const CreateBandScreen = () => {
     const [bandNameError, setBandNameError] = useState('');
     const [descriptionError, setDescriptionError] = useState('');
 
+
+    const navigation = useNavigation();
+
+    useEffect(() => {
+        {
+            navigation.setOptions({ title: 'Создать анкету группы' });
+        }
+    },);
     const handleSubmit = async () => {
         let valid = true;
         const bandsViewModel = new BandsViewModel();

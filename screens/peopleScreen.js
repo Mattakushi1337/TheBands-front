@@ -27,7 +27,7 @@ const PeopleScreen = observer(() => {
     const renderCreateFormButton = () => {
         return (
             <Button
-                title="Создать анкету"
+                title="Создать анкету музыканта"
                 onPress={() => navigation.navigate('CreateForm')}
             />
         );

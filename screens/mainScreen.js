@@ -18,13 +18,13 @@ const MainScreen = () => {
   useEffect(() => {
     switch (selectedTab) {
       case 'people':
-        navigation.setOptions({ title: 'People' });
+        navigation.setOptions({ title: 'Анкеты музыкантов' });
         break;
       case 'bands':
-        navigation.setOptions({ title: 'Bands' });
+        navigation.setOptions({ title: 'Анкеты групп' });
         break;
       default:
-        navigation.setOptions({ title: 'Profile' });
+        navigation.setOptions({ title: 'Профиль' });
     }
   }, [selectedTab]);
 
@@ -59,13 +59,13 @@ const MainScreen = () => {
         borderTopColor: '#ddd'
       }}>
         <TouchableOpacity onPress={() => handleTabPress('people')}>
-          <Icon name='people' size={20} color={selectedTab === 'people' ? 'red' : 'black'} />
+          <Icon name='people' size={20} color={selectedTab === 'people' ? 'blue' : 'black'} />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => handleTabPress('bands')}>
-          <Icon name='musical-notes' size={20} color={selectedTab === 'bands' ? 'red' : 'black'} />
+          <Icon name='musical-notes' size={20} color={selectedTab === 'bands' ? 'blue' : 'black'} />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => handleTabPress('profile')}>
-          <Icon name='person' size={20} color={selectedTab === 'profile' ? 'red' : 'black'} />
+          <Icon name='person' size={20} color={selectedTab === 'profile' ? 'blue' : 'black'} />
         </TouchableOpacity>
       </View>
     </View>

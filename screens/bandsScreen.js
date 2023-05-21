@@ -25,7 +25,7 @@ const BandsScreen = observer(() => {
     const renderCreateBandButton = () => {
         return (
             <Button
-                title="Create Band"
+                title="Создать анкету группы"
                 onPress={() => navigation.navigate('CreateBand')}
             />
         );

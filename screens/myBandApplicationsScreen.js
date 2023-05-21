@@ -5,6 +5,7 @@ import ApplicationViewModel from '../viewmodels/applicationViewModel';
 class MyBandApplicationsScreen extends Component {
     constructor(props) {
         super(props);
+        this.props.navigation.setOptions({ title: 'Заявки' });
         this.state = {
             applications: [],
         };
@@ -33,10 +34,10 @@ class MyBandApplicationsScreen extends Component {
     renderItem = ({ item }) => {
         return (
             <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                <Text>{item.username}</Text>
+                <Text>{item.user.userName}</Text>
                 <Text>{item.role}</Text>
-                <Button title="Approve" onPress={() => this.handleApprove(item.id, item.role)} />
-                <Button title="Reject" onPress={() => this.handleReject(item.id, item.role)} />
+                <Button title="Принять" onPress={() => this.handleApprove(item.id, item.role)} />
+                <Button title="Отклонить" onPress={() => this.handleReject(item.id, item.role)} />
             </View>
         );
     };

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     View,
     Text,
@@ -9,6 +9,7 @@ import {
     StyleSheet,
 } from 'react-native';
 import CreateFormViewModel from '../viewmodels/createFormViewModel';
+import { useNavigation } from '@react-navigation/native';
 
 const CreateProfileScreen = () => {
     const [userName, setUserName] = useState('');
@@ -27,6 +28,14 @@ const CreateProfileScreen = () => {
     const [descriptionError, setDescriptionError] = useState('');
     const [communicationError, setCommunicationError] = useState('');
 
+    const navigation = useNavigation();
+
+    useEffect(() => {
+        {
+            navigation.setOptions({ title: 'Создать анкету музыканта' });
+        }
+    },);
+
     const handleSubmit = async () => {
         let valid = true;
         const createFormViewModel = new CreateFormViewModel();
@@ -38,7 +47,7 @@ const CreateProfileScreen = () => {
             musicalInstrument,
             description,
             communication,
-          };
+        };
 
         if (!userName) {
             setUserName('');
@@ -195,7 +204,7 @@ const CreateProfileScreen = () => {
                     <Text style={styles.error}>{communicationError}</Text>
                 </View>
 
-                <Button title="Создать профиль" onPress={handleSubmit} />
+                <Button title="Создать анкету музыканта" onPress={handleSubmit} />
             </ScrollView>
         </KeyboardAvoidingView>
     );
