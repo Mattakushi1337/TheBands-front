@@ -14,7 +14,7 @@ class MyBandMembersScreen extends Component {
         const bandId = this.props.route.params.bandId;
         const bandMembersViewModel = new BandMembersViewModel();
         const members = await bandMembersViewModel.getBandMembers(bandId);
-        console.log(bandId);
+        console.log(bandId, members);
         this.setState({ members, bandMembersViewModel });
     }
 
@@ -23,13 +23,14 @@ class MyBandMembersScreen extends Component {
         await bandMembersViewModel.deleteBandMember(memberId);
         const bandId = this.props.route.params.bandId;
         const members = await bandMembersViewModel.getBandMembers(bandId);
+        console.log(bandId);
         this.setState({ members, bandMembersViewModel });
     };
 
     renderItem = ({ item }) => {
         return (
             <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                <Text>{item.userName}</Text>
+                <Text>{item.user.userName}</Text>
                 <Text>{item.role}</Text>
                 <Button title="Delete" onPress={() => this.handleDelete(item.id)} />
             </View>

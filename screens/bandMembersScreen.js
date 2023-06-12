@@ -22,7 +22,7 @@ class BandMembersScreen extends Component {
     renderItem = ({ item }) => {
         return (
             <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                <Text>{item.userName}</Text>
+                <Text>{item.user.userName}</Text>
                 <Text>{item.role}</Text>
             </View>
         );

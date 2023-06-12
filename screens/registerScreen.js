@@ -20,6 +20,7 @@ const RegisterScreen = () => {
         {
             navigation.setOptions({ title: 'Регистрация' });
         }
+        
     },);
     const handleRegister = async () => {
         if (login.length < 3) {

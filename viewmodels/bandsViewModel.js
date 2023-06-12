@@ -14,7 +14,7 @@ class BandsViewModel {
     async getBands() {
         try {
             this.isLoading = true;
-            const response = await axios.get('http://192.168.1.103:3000/band');
+            const response = await axios.get('http://192.168.1.106:3000/band');
             console.log(response.data);
             runInAction(() => {
                 this.bands = response.data;
@@ -29,7 +29,7 @@ class BandsViewModel {
 
     async createBand(bandName, description) {
         try {
-            const response = await axios.post('http://192.168.1.103:3000/band', {
+            const response = await axios.post('http://192.168.1.106:3000/band', {
                 bandName: bandName,
                 description: description,
             });
@@ -42,7 +42,7 @@ class BandsViewModel {
     async getMyBand() {
         try {
             this.isLoading = true;
-            const response = await axios.get('http://192.168.1.103:3000/band/myBand');
+            const response = await axios.get('http://192.168.1.106:3000/band/myBand');
             console.log("viewmodel", response.data);
             runInAction(() => {
                 this.bands = response.data;
@@ -58,7 +58,7 @@ class BandsViewModel {
 
     async deleteBand(id) {
         try {
-            await axios.delete(`http://192.168.1.103:3000/band/${id}`);
+            await axios.delete(`http://192.168.1.106:3000/band/${id}`);
             return true;
         } catch (error) {
             console.error(error);
@@ -68,7 +68,7 @@ class BandsViewModel {
 
     async updateBand(id, band) {
         try {
-            const response = await axios.put(`http://192.168.1.103:3000/band/${id}`, band);
+            const response = await axios.put(`http://192.168.1.106:3000/band/${id}`, band);
             console.log(response.data);
             return true;
         } catch (error) {

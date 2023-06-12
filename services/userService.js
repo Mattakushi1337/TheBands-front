@@ -1,6 +1,6 @@
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-const BASE_URL = 'http://192.168.1.103:3000/auth';
+const BASE_URL = 'http://192.168.1.106:3000/auth';
 
 class UserService {
     register = async (login, password, userName) => {

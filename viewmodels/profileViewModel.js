@@ -10,7 +10,7 @@ class ProfileViewModel {
 
     async loadUser() {
         try {
-            const response = await axios.get('http://192.168.1.103:3000/auth/user');
+            const response = await axios.get('http://192.168.1.106:3000/auth/user');
             runInAction(() => {
                 this.user = response.data;
             });
@@ -21,7 +21,7 @@ class ProfileViewModel {
 
     async logout() {
         try {
-            await axios.post('http://192.168.1.103:3000/auth/logout');
+            await axios.post('http://192.168.1.106:3000/auth/logout');
             runInAction(() => {
                 this.user = {};
             });
