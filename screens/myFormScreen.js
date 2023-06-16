@@ -1,11 +1,7 @@
 import React, { Component, useEffect } from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, ImageBackground } from 'react-native';
 import MyFormViewModel from '../viewmodels/myFormViewModel';
 import { useNavigation } from '@react-navigation/native';
-
-
-
-
 
 class MyFormScreen extends React.Component {
     constructor(props) {
@@ -15,7 +11,6 @@ class MyFormScreen extends React.Component {
             form: {},
         };
     }
-
 
     async componentDidMount() {
         const form = await new MyFormViewModel().getForm();
@@ -27,7 +22,7 @@ class MyFormScreen extends React.Component {
         const myFormViewModel = new MyFormViewModel();
         await myFormViewModel.deleteForm(this.state.form.id);
         this.props.navigation.navigate('Profile');
-    }
+    };
 
     handleUpdate = async () => {
         const myFormViewModel = new MyFormViewModel();
@@ -39,23 +34,70 @@ class MyFormScreen extends React.Component {
     render() {
         const { form } = this.state;
         if (!form || Object.keys(form).length === 0) {
-            return <Text>У вас пока нет анкеты</Text>;
+            return <Text style={styles.emptyText}>У вас пока нет анкеты</Text>;
         }
         const { userName, age, city, gender, musicalInstrument, description, communication } = form;
         return (
-            <View>
-                <Text>{`Имя: ${userName}`}</Text>
-                <Text>{`Возраст: ${age}`}</Text>
-                <Text>{`Город: ${city}`}</Text>
-                <Text>{`Пол: ${gender}`}</Text>
-                <Text>{`Музыкальный инструмент: ${musicalInstrument}`}</Text>
-                <Text>{`Описание: ${description}`}</Text>
-                <Text>{`Способ связи: ${communication}`}</Text>
-                <Button title="Удалить" onPress={this.handleDelete} />
-                <Button title="Изменить" onPress={this.handleUpdate} />
-            </View>
+            <ImageBackground
+                source={require('../pics/5207.png')}
+                style={styles.backgroundImage}
+            >
+                <View style={styles.container}>
+                    <Text style={styles.text}>{`Имя: ${userName}`}</Text>
+                    <Text style={styles.text}>{`Возраст: ${age}`}</Text>
+                    <Text style={styles.text}>{`Город: ${city}`}</Text>
+                    <Text style={styles.text}>{`Пол: ${gender}`}</Text>
+                    <Text style={styles.text}>{`Музыкальный инструмент: ${musicalInstrument}`}</Text>
+                    <Text style={styles.text}>{`Описание: ${description}`}</Text>
+                    <Text style={styles.text}>{`Способ связи: ${communication}`}</Text>
+                    <TouchableOpacity style={styles.button} onPress={this.handleDelete}>
+                        <Text style={styles.buttonText}>Удалить</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.button} onPress={this.handleUpdate}>
+                        <Text style={styles.buttonText}>Изменить</Text>
+                    </TouchableOpacity>
+                </View>
+            </ImageBackground>
         );
     }
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    emptyText: {
+        fontSize: 16,
+        textAlign: 'center',
+        marginTop: 20,
+
+    },
+    text: {
+        fontSize: 16,
+        marginBottom: 10,
+    },
+    button: {
+        width: 300,
+        backgroundColor: '#FFFFFF',
+        paddingHorizontal: 40,
+        paddingVertical: 5,
+        borderRadius: 100,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginBottom: 10,
+        borderColor: '#1faee9',
+        borderWidth: 2,
+    },
+    buttonText: {
+        fontSize: 16,
+        color: '#1faee9',
+    },
+    backgroundImage: {
+        flex: 1,
+        resizeMode: 'cover',
+    },
+});
 
 export default MyFormScreen;

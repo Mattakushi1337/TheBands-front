@@ -5,7 +5,7 @@ class CreateFormViewModel {
         try {
             console.log('Request body:', JSON.stringify(formData)); // добавить логирование
             const token = await AsyncStorage.getItem('access_token');
-            const response = await fetch('http://192.168.1.106:3000/form', {
+            const response = await fetch('http://192.168.1.239:3000/form', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

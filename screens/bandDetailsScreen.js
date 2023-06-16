@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Button, TextInput } from 'react-native';
+import { View, Text, StyleSheet, Button, TextInput, ImageBackground, TouchableOpacity } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import ApplicationViewModel from '../viewmodels/applicationViewModel';
 
@@ -32,26 +32,36 @@ const BandDetailsScreen = () => {
     };
 
     return (
-        <View style={styles.container}>
-            <Text style={styles.bandName}>{band.bandName}</Text>
-            <Text style={styles.description}>{band.description}</Text>
-            <View style={styles.inputContainer}>
-                <TextInput
-                    style={styles.input}
-                    placeholder="Введите вашу роль в группе"
-                    value={role}
-                    onChangeText={text => {
-                        setRole(text);
-                        setRoleError('');
-                    }}
-                />
-                {roleError !== '' && <Text style={styles.error}>{roleError}</Text>}
+        <ImageBackground
+            source={require('../pics/847ACCt5l8w.jpg')}
+            style={styles.backgroundImage}
+        >
+            <View style={styles.container}>
+                <Text style={styles.bandName}>{band.bandName}</Text>
+                <Text style={styles.description}>{band.description}</Text>
+                <View style={styles.inputContainer}>
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Введите вашу роль в группе"
+                        value={role}
+                        onChangeText={text => {
+                            setRole(text);
+                            setRoleError('');
+                        }}
+                    />
+                    {roleError !== '' && <Text style={styles.error}>{roleError}</Text>}
+                </View>
+                <View style={styles.buttonContainer}>
+                    <TouchableOpacity style={styles.button} onPress={handleJoinBand}>
+                        <Text style={styles.buttonText}>Отправить заявку</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity style={styles.button} onPress={handleViewMembers}>
+                        <Text style={styles.buttonText}>Посмотреть участников</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
-            <View style={styles.buttonContainer}>
-                <Button title="Отправить заявку" onPress={handleJoinBand} />
-                <Button title="Посмотреть участников" onPress={handleViewMembers} />
-            </View>
-        </View>
+        </ImageBackground>
     );
 };
 
@@ -64,29 +74,44 @@ const styles = StyleSheet.create({
     bandName: {
         fontSize: 24,
         fontWeight: 'bold',
-        marginBottom: 10,
+        marginBottom: -10,
     },
     description: {
         fontSize: 16,
-        marginBottom: 20,
+        marginBottom: 10,
     },
     inputContainer: {
         width: '80%',
-        marginBottom: 20,
+        marginBottom: 10,
     },
     input: {
         borderWidth: 1,
-        borderColor: '#ccc',
+        borderColor: '#1faee9',
         padding: 10,
-        borderRadius: 5,
+        borderRadius: 100,
         fontSize: 16,
+        backgroundColor: 'white'
+
     },
-    buttonContainer: {
-        width: '80%',
+    button: {
+        width: 300,
+        backgroundColor: '#FFFFFF',
+        paddingHorizontal: 40,
+        paddingVertical: 5,
+        borderRadius: 100,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginBottom: 10,
+        borderColor: '#1faee9',
+        borderWidth: 1,
     },
     error: {
         color: 'red',
         marginTop: 5,
+    },
+    backgroundImage: {
+        flex: 1,
+        resizeMode: 'cover',
     },
 });
 

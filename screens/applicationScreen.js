@@ -17,20 +17,13 @@ const ApplicationScreen = ({ bandId }) => {
     const handleApprove = async (applicationId, role) => {
         await new ApplicationViewModel().approveApplication(applicationId, role);
         loadApplications();
-        sendPushNotification(applicationId, role);
     };
 
     const handleReject = async (applicationId, role) => {
         await new ApplicationViewModel().rejectApplication(applicationId, role);
         loadApplications();
-        sendPushNotification(applicationId, role);
     };
 
-
-    const sendPushNotification = async (applicationId, role) => {
-        const response = await new ApplicationViewModel().sendPushNotification(applicationId, role);
-        console.log('Push notification sent:', response);
-    };
 
     const renderItem = ({ item }) => (
         <View>

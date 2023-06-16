@@ -1,10 +1,8 @@
 import React, { useEffect } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { Button } from 'react-native-elements';
+import { View, Text, StyleSheet, TouchableOpacity, ImageBackground, fontFamily } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { observer } from 'mobx-react';
-import ProfileViewModel from '../viewmodels/profileViewModel';
-import LinearGradient from 'react-native-linear-gradient';
+import ProfileViewModel from '../viewmodels/profileViewModel'
 
 const profileViewModel = new ProfileViewModel();
 
@@ -16,29 +14,33 @@ const ProfileScreen = observer(() => {
     }, []);
 
     return (
+        <ImageBackground
+            source={require('../pics/847ACCt5l8w.jpg')}
+            style={styles.backgroundImage}
+        >
             <View style={styles.container}>
-                <Text style={styles.title}>{`Имя пользователя: ${profileViewModel.user.userName}`}</Text>
+                <Text style={[styles.title, { fontFamily: 'Roboto-Italic' }]}>
+                    {`Имя пользователя: ${profileViewModel.user.userName}`}
+                </Text>
                 <Text style={styles.subtitle}>{`Логин: ${profileViewModel.user.login}`}</Text>
-                <Button
-                    title="Посмотреть свою анкету музыканта"
-                    buttonStyle={styles.button}
-                    onPress={() => navigation.navigate('MyForm')}
-                />
-                <Button
-                    title="Посмотреть свою анкету группы"
-                    buttonStyle={styles.button}
-                    onPress={() => navigation.navigate('MyBand')}
-                />
-                <Button
-                    title="Выйти из аккаунта"
-                    buttonStyle={styles.logoutButton}
+                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('MyForm')}>
+                    <Text style={styles.buttonText}>Моя анкета музыканта</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('MyBand')}>
+                    <Text style={styles.buttonText}>Моя анкета группы</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={styles.logoutButton}
                     onPress={async () => {
                         const profileViewModel = new ProfileViewModel();
                         await profileViewModel.logout();
                         navigation.navigate('Login');
                     }}
-                /> 
+                >
+                    <Text style={styles.buttonLogoutText}>Выйти из аккаунта</Text>
+                </TouchableOpacity>
             </View>
+        </ImageBackground>
     );
 });
 
@@ -48,34 +50,46 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    gradient: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
     title: {
-        fontSize: 24,
+        fontSize: 18,
         fontWeight: 'bold',
-        textAlign: 'center',
         marginBottom: 10,
-        color: '#fff',
     },
     subtitle: {
-        fontSize: 18,
-        textAlign: 'center',
-        marginBottom: 20,
-        color: '#fff',
-    },
-    button: {
-        backgroundColor: '#7fc7ff',
-        borderRadius: 15,
+        fontSize: 16,
         marginBottom: 10,
     },
-    logoutButton: {
-        backgroundColor: '#2E3134',
-        borderRadius: 10,
-        marginTop: 10,
+    button: {
+        width: '80%',
+        backgroundColor: '#FFFFFF',
+        paddingHorizontal: 40,
+        paddingVertical: 5,
+        borderRadius: 100,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginBottom: 10,
+        borderColor: '#1faee9',
+        borderWidth: 2,
     },
+    backgroundImage: {
+        flex: 1,
+        resizeMode: 'cover',
+    },
+    buttonLogoutText: {
+        color: 'black',
+        fontSize: 16,
+    },
+    logoutButton: {
+        backgroundColor: 'white',
+        paddingHorizontal: 20,
+        paddingVertical: 5,
+        borderRadius: 100,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginBottom: 10,
+        borderWidth: 2,
+        borderColor: '#1faee9'
+    }
 });
 
 export default ProfileScreen;
