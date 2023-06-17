@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, FlatList, Button } from 'react-native';
+import { View, Text, FlatList, Button, ImageBackground, StyleSheet } from 'react-native';
 import BandMembersViewModel from '../viewmodels/bandMembersViewModel';
 
 class BandMembersScreen extends Component {
@@ -15,15 +15,17 @@ class BandMembersScreen extends Component {
         const bandId = this.props.route.params.bandId;
         const members = await new BandMembersViewModel().getBandMembers(bandId);
         this.setState({ members });
+        this.props.navigation.setOptions({
+            title: 'Участники группы',
+        });
     }
-
 
 
     renderItem = ({ item }) => {
         return (
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                <Text>{item.user.userName}</Text>
-                <Text>{item.role}</Text>
+            <View style={styles.itemContainer}>
+                <Text style={styles.userName}>Имя: {item.user.userName}</Text>
+                <Text style={styles.role}>Роль: {item.role}</Text>
             </View>
         );
     };
@@ -31,13 +33,40 @@ class BandMembersScreen extends Component {
 
     render() {
         return (
-            <FlatList
-                data={this.state.members}
-                renderItem={this.renderItem}
-                keyExtractor={(item) => item.id.toString()}
-            />
+            <ImageBackground
+                source={require('../pics/KdHNsSYlCKk.jpg')}
+                style={styles.backgroundImage}
+            >
+                <FlatList
+                    data={this.state.members}
+                    renderItem={this.renderItem}
+                    keyExtractor={(item) => item.id.toString()}
+                />
+            </ImageBackground>
         );
     }
 }
+const styles = StyleSheet.create({
+    itemContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        paddingHorizontal: 16,
+        paddingVertical: 8,
+        borderBottomWidth: 1,
+        borderBottomColor: '#ccc',
+    },
+    userName: {
+        fontSize: 16,
+        fontWeight: 'bold',
+    },
+    role: {
+        fontSize: 16,
+    },
+    backgroundImage: {
+        flex: 1,
+        resizeMode: 'cover',
+    },
+});
+
 
 export default BandMembersScreen;

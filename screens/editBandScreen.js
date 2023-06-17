@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, TextInput, Button, StyleSheet } from 'react-native';
+import { View, TextInput, Button, StyleSheet, TouchableOpacity, ImageBackground, Text, ScrollView, KeyboardAvoidingView } from 'react-native';
 import BandsViewModel from '../viewmodels/bandsViewModel';
 
 function EditBandScreen({ route, navigation }) {
@@ -38,40 +38,72 @@ function EditBandScreen({ route, navigation }) {
     };
 
     return (
-        <View style={styles.container}>
-            <TextInput
-                style={styles.input}
-                placeholder="Название группы"
-                value={band.bandName}
-                onChangeText={(value) => setForm({ ...band, bandName: value })}
-            />
-            <TextInput
-                style={styles.input}
-                placeholder="Описание"
-                value={band.description}
-                onChangeText={(value) => setForm({ ...band, description: value })}
-            />
-            <Button title="Save" onPress={handleSave} />
-        </View>
+        <ImageBackground
+            source={require('../pics/KdHNsSYlCKk.jpg')} // Укажите путь к вашему изображению
+            style={styles.backgroundImage}
+        >
+            <KeyboardAvoidingView behavior="hight" style={styles.container}>
+                <ScrollView>
+                    <Text style={styles.label}>Название группы:</Text>
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Введите название группы"
+                        value={band.bandName}
+                        onChangeText={(value) => setBand({ ...band, bandName: value })}
+                    />
+                    <Text style={styles.label}>Описание:</Text>
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Напишите описание группы"
+                        value={band.description}
+                        onChangeText={(value) => setBand({ ...band, description: value })}
+                    />
+                    <TouchableOpacity style={styles.button} onPress={handleSave}>
+                        <Text style={styles.buttonText}>Изменить анкету группы</Text>
+                    </TouchableOpacity>
+                </ScrollView>
+            </KeyboardAvoidingView>
+        </ImageBackground>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        padding: 20,
-        backgroundColor: '#fff',
+        backgroundColor: 'transparent',
         alignItems: 'center',
         justifyContent: 'center',
+        padding: 20,
     },
     input: {
-        width: '80%', // Или другое значение для равных размеров
-        height: 40,
-        borderWidth: 1,
-        borderColor: 'gray',
-        marginBottom: 10,
+        width: 300,
+        height: 'auto',
+        borderColor: '#42aaff',
+        borderWidth: 2,
+        borderRadius: 5,
         paddingHorizontal: 10,
-        borderRadius: 8,
+        backgroundColor: 'white',
+        marginBottom: 10,
+    },
+    button: {
+        backgroundColor: 'white',
+        paddingVertical: 10,
+        paddingHorizontal: 20,
+        borderRadius: 100,
+        alignItems: 'center',
+        marginBottom: 20,
+        borderWidth: 2,
+        borderColor: '#1faee9'
+    },
+    backgroundImage: {
+        flex: 1,
+        resizeMode: 'cover',
+        backgroundAttachment: 'fixed',
+    },
+    label: {
+        fontWeight: 'bold',
+        marginBottom: 5,
+        color: 'black'
     },
 });
 

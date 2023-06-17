@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Button, TextInput, ImageBackground, TouchableOpacity } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import ApplicationViewModel from '../viewmodels/applicationViewModel';
@@ -31,6 +31,10 @@ const BandDetailsScreen = () => {
         navigation.navigate('BandMember', { bandId: band.id });
     };
 
+
+    useEffect(() => {
+        navigation.setOptions({ title: band.bandName });
+    }, []);
     return (
         <ImageBackground
             source={require('../pics/847ACCt5l8w.jpg')}

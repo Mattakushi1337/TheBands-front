@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Text, Button, TouchableOpacity, ImageBackground, StyleSheet } from 'react-native';
 import BandsViewModel from '../viewmodels/bandsViewModel';
 
 class MyBandScreen extends React.Component {
@@ -42,25 +42,77 @@ class MyBandScreen extends React.Component {
 
     render() {
         const { band } = this.state;
-        if (!band) {
-            return (
-                <View>
-                    <Text>У вас пока нет группы</Text>
-                </View>
-            );
+        if (!band || Object.keys(band).length === 0) {
+            return (<ImageBackground
+                source={require('../pics/KdHNsSYlCKk.jpg')}
+                style={styles.backgroundImage}
+            >
+                <Text style={styles.emptyText}>У вас пока нет группы</Text>
+            </ImageBackground>);
         }
         const { bandName, description } = band;
         return (
-            <View>
-                <Text>{`Имя группы: ${bandName}`}</Text>
-                <Text>{`Описание: ${description}`}</Text>
-                <Button title="Удалить" onPress={this.handleDelete} />
-                <Button title="Изменить" onPress={this.handleUpdate} />
-                <Button title="Просмотр заявок" onPress={this.handleViewApplications} />
-                <Button title="Участники моей группы" onPress={this.handleViewMembers} />
-            </View>
+            <ImageBackground
+                source={require('../pics/KdHNsSYlCKk.jpg')}
+                style={styles.backgroundImage}
+            >
+                <View style={styles.container}>
+                    <Text style={styles.text}>{`Имя группы: ${bandName}`}</Text>
+                    <Text style={styles.text}>{`Описание: ${description}`}</Text>
+                    <TouchableOpacity style={styles.button} onPress={this.handleDelete}>
+                        <Text style={styles.buttonText}>Удалить</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.button} onPress={this.handleUpdate}>
+                        <Text style={styles.buttonText}>Изменить</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.button} onPress={this.handleViewApplications}>
+                        <Text style={styles.buttonText}>Просмотр заявок</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.button} onPress={this.handleViewMembers}>
+                        <Text style={styles.buttonText}>Участники моей группы</Text>
+                    </TouchableOpacity>
+                </View>
+            </ImageBackground>
         );
     }
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    text: {
+        fontSize: 16,
+        marginBottom: 10,
+    },
+    button: {
+        width: 300,
+        backgroundColor: '#FFFFFF',
+        paddingHorizontal: 40,
+        paddingVertical: 5,
+        borderRadius: 100,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginBottom: 10,
+        borderColor: '#1faee9',
+        borderWidth: 2,
+    },
+    buttonText: {
+        fontSize: 16,
+        color: '#1faee9',
+    },
+    backgroundImage: {
+        flex: 1,
+        resizeMode: 'cover',
+    },
+    emptyText: {
+        fontSize: 16,
+        textAlign: 'center',
+        marginTop: 20,
+
+    },
+});
 
 export default MyBandScreen;

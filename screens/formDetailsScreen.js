@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, ImageBackground, StyleSheet } from 'react-native';
-
+import { useNavigation } from '@react-navigation/native';
 const FormDetailsScreen = ({ route }) => {
     const { form } = route.params;
+
+    const navigation = useNavigation();
+    useEffect(() => {
+        navigation.setOptions({ title: form.userName });
+    }, []);
     return (
         <ImageBackground
-            source={require('../pics/847ACCt5l8w.jpg')}
+            source={require('../pics/WZ2bPLHmuW8.jpg')}
             style={styles.backgroundImage}
         >
             <View style={styles.container}>

@@ -26,6 +26,7 @@
     "react-native-elements": "^3.4.3",
     "react-native-gesture-handler": "~2.9.0",
     "react-native-google-fonts": "^0.0.0",
+    "react-native-keyboard-aware-scroll-view": "^0.9.5",
     "react-native-linear-gradient": "^2.6.2",
     "react-native-onesignal": "^4.5.1",
     "react-native-push-notification": "^8.1.1",

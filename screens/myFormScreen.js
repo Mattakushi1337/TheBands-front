@@ -34,12 +34,17 @@ class MyFormScreen extends React.Component {
     render() {
         const { form } = this.state;
         if (!form || Object.keys(form).length === 0) {
-            return <Text style={styles.emptyText}>У вас пока нет анкеты</Text>;
+            return (<ImageBackground
+                source={require('../pics/KdHNsSYlCKk.jpg')}
+                style={styles.backgroundImage}
+            >
+                <Text style={styles.emptyText}>У вас пока нет анкеты</Text>
+            </ImageBackground>);
         }
         const { userName, age, city, gender, musicalInstrument, description, communication } = form;
         return (
             <ImageBackground
-                source={require('../pics/5207.png')}
+                source={require('../pics/KdHNsSYlCKk.jpg')}
                 style={styles.backgroundImage}
             >
                 <View style={styles.container}>

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ImageBackground, fontFamily } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { observer } from 'mobx-react';
 import ProfileViewModel from '../viewmodels/profileViewModel'
 
@@ -8,14 +8,20 @@ const profileViewModel = new ProfileViewModel();
 
 const ProfileScreen = observer(() => {
     const navigation = useNavigation();
-
+    const route = useRoute();
     useEffect(() => {
         profileViewModel.loadUser();
+        if (route.name === 'Main') {
+            // Скрываем кнопку в правом верхнем углу
+            navigation.setOptions({
+                headerRight: () => null,
+            });
+        }
     }, []);
 
     return (
         <ImageBackground
-            source={require('../pics/847ACCt5l8w.jpg')}
+            source={require('../pics/WZ2bPLHmuW8.jpg')}
             style={styles.backgroundImage}
         >
             <View style={styles.container}>
@@ -89,7 +95,10 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         borderWidth: 2,
         borderColor: '#1faee9'
-    }
+    },
+    headerRight: {
+        display: 'none',
+    },
 });
 
 export default ProfileScreen;

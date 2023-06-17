@@ -4,12 +4,15 @@ import {
     Text,
     TextInput,
     ScrollView,
-    Button,
+    TouchableOpacity,
     KeyboardAvoidingView,
     StyleSheet,
+    ImageBackground
 } from 'react-native';
 import CreateFormViewModel from '../viewmodels/createFormViewModel';
 import { useNavigation } from '@react-navigation/native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+
 
 const CreateProfileScreen = () => {
     const [userName, setUserName] = useState('');
@@ -118,102 +121,109 @@ const CreateProfileScreen = () => {
     };
 
     return (
-        <KeyboardAvoidingView behavior="padding" style={styles.container}>
-            <ScrollView>
-                <View>
-                    <Text style={styles.label}>Имя</Text>
-                    <TextInput
-                        style={styles.input}
-                        onChangeText={setUserName}
-                        value={userName}
-                        placeholder="Введите своё имя"
-                        autoCapitalize="none"
-                    />
-                    <Text style={styles.error}>{nameError}</Text>
-                </View>
+        <ImageBackground
+            source={require('../pics/KdHNsSYlCKk.jpg')} // Укажите путь к вашему изображению
+            style={styles.backgroundImage}
+        >
+            <KeyboardAvoidingView behavior="hight" style={styles.container}>
+                <ScrollView contentContainerStyle={styles.scrollContent}>
+                    <View>
+                        <Text style={styles.label}>Имя</Text>
+                        <TextInput
+                            style={styles.input}
+                            onChangeText={setUserName}
+                            value={userName}
+                            placeholder="Введите своё имя"
+                            autoCapitalize="none"
+                        />
+                        <Text style={styles.error}>{nameError}</Text>
+                    </View>
 
-                <View>
-                    <Text style={styles.label}>Возраст</Text>
-                    <TextInput
-                        style={styles.input}
-                        onChangeText={setAge}
-                        value={age}
-                        placeholder="Введите свой возраст"
-                        keyboardType="numeric"
-                    />
-                    <Text style={styles.error}>{ageError}</Text>
-                </View>
-                <View>
-                    <Text style={styles.label}>Город</Text>
-                    <TextInput
-                        style={styles.input}
-                        onChangeText={setCity}
-                        value={city}
-                        placeholder="Введите свой город"
-                        autoCapitalize="none"
-                    />
-                    <Text style={styles.error}>{cityError}</Text>
-                </View>
+                    <View>
+                        <Text style={styles.label}>Возраст</Text>
+                        <TextInput
+                            style={styles.input}
+                            onChangeText={setAge}
+                            value={age}
+                            placeholder="Введите свой возраст"
+                            keyboardType="numeric"
+                        />
+                        <Text style={styles.error}>{ageError}</Text>
+                    </View>
+                    <View>
+                        <Text style={styles.label}>Город</Text>
+                        <TextInput
+                            style={styles.input}
+                            onChangeText={setCity}
+                            value={city}
+                            placeholder="Введите свой город"
+                            autoCapitalize="none"
+                        />
+                        <Text style={styles.error}>{cityError}</Text>
+                    </View>
 
-                <View>
-                    <Text style={styles.label}>Пол</Text>
-                    <TextInput
-                        style={styles.input}
-                        onChangeText={setGender}
-                        value={gender}
-                        placeholder="Введите свой пол"
-                        autoCapitalize="none"
-                    />
-                    <Text style={styles.error}>{genderError}</Text>
-                </View>
+                    <View>
+                        <Text style={styles.label}>Пол</Text>
+                        <TextInput
+                            style={styles.input}
+                            onChangeText={setGender}
+                            value={gender}
+                            placeholder="Введите свой пол"
+                            autoCapitalize="none"
+                        />
+                        <Text style={styles.error}>{genderError}</Text>
+                    </View>
 
-                <View>
-                    <Text style={styles.label}>Музыкальный инструмент</Text>
-                    <TextInput
-                        style={styles.input}
-                        onChangeText={setMusicalInstrument}
-                        value={musicalInstrument}
-                        placeholder="Введите свой музыкальный инструмент"
-                        autoCapitalize="none"
-                    />
-                    <Text style={styles.error}>{instrumentError}</Text>
-                </View>
+                    <View>
+                        <Text style={styles.label}>Музыкальный инструмент</Text>
+                        <TextInput
+                            style={styles.input}
+                            onChangeText={setMusicalInstrument}
+                            value={musicalInstrument}
+                            placeholder="Введите свой музыкальный инструмент"
+                            autoCapitalize="none"
+                        />
+                        <Text style={styles.error}>{instrumentError}</Text>
+                    </View>
 
-                <View>
-                    <Text style={styles.label}>Описание</Text>
-                    <TextInput
-                        style={styles.input}
-                        onChangeText={setDescription}
-                        value={description}
-                        placeholder="Введите описание"
-                        autoCapitalize="none"
-                        multiline
-                    />
-                    <Text style={styles.error}>{descriptionError}</Text>
-                </View>
+                    <View>
+                        <Text style={styles.label}>Описание</Text>
+                        <TextInput
+                            style={styles.input}
+                            onChangeText={setDescription}
+                            value={description}
+                            placeholder="Введите описание"
+                            autoCapitalize="none"
+                            multiline
+                        />
+                        <Text style={styles.error}>{descriptionError}</Text>
+                    </View>
 
-                <View>
-                    <Text style={styles.label}>Способ связи</Text>
-                    <TextInput
-                        style={styles.input}
-                        onChangeText={setCommunication}
-                        value={communication}
-                        placeholder="Введите свой способ связи"
-                        autoCapitalize="none"
-                    />
-                    <Text style={styles.error}>{communicationError}</Text>
-                </View>
+                    <View>
+                        <Text style={styles.label}>Способ связи</Text>
+                        <TextInput
+                            style={styles.input}
+                            onChangeText={setCommunication}
+                            value={communication}
+                            placeholder="Введите свой способ связи"
+                            autoCapitalize="none"
+                        />
+                        <Text style={styles.error}>{communicationError}</Text>
+                    </View>
 
-                <Button title="Создать анкету музыканта" onPress={handleSubmit} />
-            </ScrollView>
-        </KeyboardAvoidingView>
+                    <TouchableOpacity style={styles.button} onPress={handleSubmit}>
+                        <Text style={styles.buttonText}>Создать анкету</Text>
+                    </TouchableOpacity>
+                </ScrollView>
+            </KeyboardAvoidingView>
+        </ImageBackground>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: 'transparent',
         alignItems: 'center',
         justifyContent: 'center',
         padding: 20,
@@ -221,17 +231,40 @@ const styles = StyleSheet.create({
     label: {
         fontWeight: 'bold',
         marginBottom: 5,
+        color: 'black'
     },
     input: {
-        borderWidth: 1,
-        borderColor: '#ccc',
-        padding: 10,
-        marginBottom: 20,
+        width: 300,
+        height: 'auto',
+        borderColor: '#42aaff',
+        borderWidth: 2,
         borderRadius: 5,
+        paddingHorizontal: 10,
+        marginBottom: -20,
+        backgroundColor: 'white',
+    },
+    button: {
+        backgroundColor: 'white',
+        paddingVertical: 10,
+        paddingHorizontal: 20,
+        borderRadius: 100,
+        alignItems: 'center',
+        marginBottom: 20,
+        borderWidth: 2,
+        borderColor: '#1faee9'
     },
     error: {
         color: 'red',
         marginBottom: 10,
+    },
+    backgroundImage: {
+        flex: 1,
+        resizeMode: 'cover',
+        backgroundAttachment: 'fixed',
+    },
+    scrollContent: {
+        flexGrow: 1,
+
     },
 });
 
