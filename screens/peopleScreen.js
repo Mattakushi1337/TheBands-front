@@ -82,6 +82,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderColor: '#1faee9',
         borderWidth: 1,
+        marginTop: 10
     },
     userName: {
         fontSize: 16,

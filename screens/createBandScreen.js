@@ -15,8 +15,10 @@ import { useNavigation } from '@react-navigation/native';
 const CreateBandScreen = () => {
     const [bandName, setBandName] = useState('');
     const [description, setDescription] = useState('');
+    const [contact, setContact] = useState('');
     const [bandNameError, setBandNameError] = useState('');
     const [descriptionError, setDescriptionError] = useState('');
+    const [contactError, setContactError] = useState('');
 
     const navigation = useNavigation();
 
@@ -26,6 +28,7 @@ const CreateBandScreen = () => {
         const formData = {
             bandName,
             description,
+            contact
         };
 
         if (!bandName) {
@@ -44,12 +47,21 @@ const CreateBandScreen = () => {
             setDescriptionError(''); // Очистить ошибку, если поле не пустое
         }
 
+        if (!contact) {
+            setContact('');
+            setContactError('Пожалуйста, укажите, как с вами связаться');
+            valid = false;
+        } else {
+            setContactError(''); // Очистить ошибку, если поле не пустое
+        }
+
         if (valid) {
             // submit data to server or do other necessary actions
             console.log('Form submitted successfully');
             try {
-                const data = await bandsViewModel.createBand(formData.bandName, formData.description);
+                const data = await bandsViewModel.createBand(formData.bandName, formData.description, formData.contact);
                 console.log(data);
+                navigation.navigate('Band')
             } catch (error) {
                 console.error(error);
             }
@@ -90,6 +102,18 @@ const CreateBandScreen = () => {
                             multiline
                         />
                         <Text style={styles.error}>{descriptionError}</Text>
+                    </View>
+                    <View>
+                        <Text style={styles.label}>Как связаться</Text>
+                        <TextInput
+                            style={styles.input}
+                            onChangeText={setContact}
+                            value={contact}
+                            placeholder="Введите номер телефона или ссылку на вашу страницу в любой соц. сети"
+                            autoCapitalize="none"
+                            multiline
+                        />
+                        <Text style={styles.error}>{contactError}</Text>
                     </View>
 
                     <TouchableOpacity style={styles.button} onPress={handleSubmit}>

@@ -12,7 +12,7 @@ class RegisterViewModel {
 
     checkIfLoginTaken = async (login) => {
         try {
-            const response = await fetch(`http://192.168.1.239:3000/auth/checklogin?login=${login}`);
+            const response = await fetch(`http://192.168.1.106:3000/auth/checklogin?login=${login}`);
             const data = await response.json();
             return data.isTaken;
         } catch (error) {

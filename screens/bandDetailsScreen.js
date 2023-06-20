@@ -43,6 +43,7 @@ const BandDetailsScreen = () => {
             <View style={styles.container}>
                 <Text style={styles.bandName}>{band.bandName}</Text>
                 <Text style={styles.description}>{band.description}</Text>
+                <Text style={styles.description}>{band.contact}</Text>
                 <View style={styles.inputContainer}>
                     <TextInput
                         style={styles.input}
@@ -74,11 +75,12 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
+        marginTop: 100
     },
     bandName: {
         fontSize: 24,
         fontWeight: 'bold',
-        marginBottom: -10,
+        marginBottom: 0,
     },
     description: {
         fontSize: 16,

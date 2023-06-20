@@ -50,7 +50,7 @@ class MyBandScreen extends React.Component {
                 <Text style={styles.emptyText}>У вас пока нет группы</Text>
             </ImageBackground>);
         }
-        const { bandName, description } = band;
+        const { bandName, description, contact } = band;
         return (
             <ImageBackground
                 source={require('../pics/KdHNsSYlCKk.jpg')}
@@ -59,6 +59,7 @@ class MyBandScreen extends React.Component {
                 <View style={styles.container}>
                     <Text style={styles.text}>{`Имя группы: ${bandName}`}</Text>
                     <Text style={styles.text}>{`Описание: ${description}`}</Text>
+                    <Text style={styles.text}>{`Связаться: ${contact}`}</Text>
                     <TouchableOpacity style={styles.button} onPress={this.handleDelete}>
                         <Text style={styles.buttonText}>Удалить</Text>
                     </TouchableOpacity>

@@ -13,7 +13,7 @@ class PeopleViewModel {
 
     async checkFormExists() {
         try {
-            const response = await axios.get('http://192.168.1.239:3000/form/form/myForm');
+            const response = await axios.get('http://192.168.1.106:3000/form/form/myForm');
             runInAction(() => {
                 this.hasForm = response.data.hasForm;
             });
@@ -25,7 +25,7 @@ class PeopleViewModel {
     async getForms() {
         try {
             this.isLoading = true;
-            const response = await axios.get('http://192.168.1.239:3000/form/form/all');
+            const response = await axios.get('http://192.168.1.106:3000/form/form/all');
             runInAction(() => {
                 this.forms = response.data;
             });
