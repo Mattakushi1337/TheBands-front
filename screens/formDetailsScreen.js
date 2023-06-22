@@ -14,7 +14,7 @@ const FormDetailsScreen = ({ route }) => {
             style={styles.backgroundImage}
         >
             <View style={styles.container}>
-                <Text style={styles.text}>{`Имя: ${form.userName}`}</Text>
+                <Text style={styles.text}>{`Имя музыканта: ${form.userName}`}</Text>
                 <Text style={styles.text}>{`Возраст: ${typeof form.age === 'number' ? form.age : 'unknown'}`}</Text>
                 <Text style={styles.text}>{`Город: ${form.city}`}</Text>
                 <Text style={styles.text}>{`Пол: ${form.gender}`}</Text>

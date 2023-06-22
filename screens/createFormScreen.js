@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import CreateFormViewModel from '../viewmodels/createFormViewModel';
 import { useNavigation } from '@react-navigation/native';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+
 
 
 const CreateProfileScreen = () => {
@@ -126,7 +126,7 @@ const CreateProfileScreen = () => {
             source={require('../pics/KdHNsSYlCKk.jpg')} // Укажите путь к вашему изображению
             style={styles.backgroundImage}
         >
-            <KeyboardAvoidingView behavior="hight" style={styles.container}>
+            <KeyboardAvoidingView behavior="height" style={styles.container}>
                 <ScrollView contentContainerStyle={styles.scrollContent}>
                     <View>
                         <Text style={styles.label}>Имя</Text>

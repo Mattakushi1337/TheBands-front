@@ -26,6 +26,7 @@ const MainScreen = () => {
       default:
         navigation.setOptions({ title: 'Профиль' });
     }
+    navigation.setOptions({ headerLeft: null })
   }, [selectedTab]);
 
   const handleTabPress = (tabName) => {

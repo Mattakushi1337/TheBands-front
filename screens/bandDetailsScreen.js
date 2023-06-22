@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, Button, TextInput, ImageBackground, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Button, TextInput, ImageBackground, TouchableOpacity, Alert } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import ApplicationViewModel from '../viewmodels/applicationViewModel';
 
@@ -21,6 +21,7 @@ const BandDetailsScreen = () => {
         try {
             await applicationViewModel.createApplication(band.id, role);
             console.log(`Joining band ${band.id} with role ${role}...`);
+            Alert.alert('Уведомление', 'Заявка отправлена')
             // Дополнительная логика после подачи заявки
         } catch (error) {
             console.error('Error while joining band:', error);

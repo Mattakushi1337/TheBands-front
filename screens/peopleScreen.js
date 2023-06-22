@@ -18,7 +18,7 @@ const PeopleScreen = observer(() => {
     const renderItem = ({ item }) => (
         <TouchableOpacity onPress={() => navigation.navigate('FormDetails', { form: item })}>
             <View style={styles.formItem}>
-                <Text style={styles.userName}>{`Имя: ${item.userName}`}</Text>
+                <Text style={styles.userName}>{`Имя музыканта: ${item.userName}`}</Text>
                 <Text style={styles.musicalInstrument}>{`Музыкальный инструмент: ${item.musicalInstrument}`}</Text>
             </View>
         </TouchableOpacity>
@@ -53,7 +53,7 @@ const PeopleScreen = observer(() => {
 
     return (
         <ImageBackground
-            source={require('../pics/5207.png')}
+            source={require('../pics/YYSC9qTR9HA.jpg')}
             style={styles.backgroundImage}
         >
             <View style={styles.container}>
@@ -74,14 +74,14 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     formItem: {
-        width: 350,
+        width: 361,
         height: 50,
         borderRadius: 100,
         backgroundColor: 'white',
         justifyContent: 'center',
         alignItems: 'center',
         borderColor: '#1faee9',
-        borderWidth: 1,
+        borderWidth: 2,
         marginTop: 10
     },
     userName: {

@@ -77,7 +77,8 @@ const CreateBandScreen = () => {
             source={require('../pics/KdHNsSYlCKk.jpg')} // Укажите путь к вашему изображению
             style={styles.backgroundImage}
         >
-            <KeyboardAvoidingView behavior="hight" style={styles.container}>
+           
+            <KeyboardAvoidingView behavior="height" style={styles.container}>
                 <ScrollView>
                     <View>
                         <Text style={styles.label}>Название группы</Text>
@@ -97,7 +98,7 @@ const CreateBandScreen = () => {
                             style={styles.input}
                             onChangeText={setDescription}
                             value={description}
-                            placeholder="Введите описание"
+                            placeholder="Расскажите о своей группе. Укажите с какого вы города и кого ищите."
                             autoCapitalize="none"
                             multiline
                         />
@@ -128,7 +129,7 @@ const CreateBandScreen = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'transparent', // Установите прозрачный фон для контейнера
+        backgroundColor: 'transparent',
         padding: 20,
         alignItems: 'center',
         justifyContent: 'center',

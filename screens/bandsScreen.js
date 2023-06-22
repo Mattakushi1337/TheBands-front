@@ -35,14 +35,14 @@ const BandsScreen = observer(() => {
             style={styles.bandItem}
         >
             <View style={styles.shapeContainer}>
-                <Text style={styles.bandName}>{`Название: ${item.bandName}`}</Text>
+                <Text style={styles.bandName}>{`Название группы: ${item.bandName}`}</Text>
             </View>
         </TouchableOpacity>
     );
 
     return (
         <ImageBackground
-            source={require('../pics/5207.png')}
+            source={require('../pics/YYSC9qTR9HA.jpg')}
             style={styles.backgroundImage}
         >
             <View style={styles.container}>
@@ -69,17 +69,17 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     bandItem: {
-        marginBottom: 20,
+        marginBottom: 10,
     },
     shapeContainer: {
         width: 350,
-        height: 30,
+        height: 50,
         borderRadius: 100,
         backgroundColor: 'white',
         justifyContent: 'center',
         alignItems: 'center',
         borderColor: '#1faee9',
-        borderWidth: 1,
+        borderWidth: 2,
     },
     bandName: {
         fontSize: 16,
