@@ -29,6 +29,13 @@ const BandsScreen = observer(() => {
         });
     }, [navigation]);
 
+
+    const handleRefresh = () => {
+        bandsViewModel.getBands();
+
+    };
+
+
     const renderItem = ({ item }) => (
         <TouchableOpacity
             onPress={() => navigation.navigate('BandDetails', { band: item })}
@@ -55,6 +62,8 @@ const BandsScreen = observer(() => {
                         data={bandsViewModel.bands}
                         renderItem={renderItem}
                         keyExtractor={(item) => item.id.toString()}
+                        onRefresh={handleRefresh}
+                        refreshing={bandsViewModel.isLoading}
                     />
                 )}
             </View>

@@ -61,7 +61,7 @@ const CreateBandScreen = () => {
             try {
                 const data = await bandsViewModel.createBand(formData.bandName, formData.description, formData.contact);
                 console.log(data);
-                navigation.navigate('Band')
+                navigation.navigate('Main')
             } catch (error) {
                 console.error(error);
             }

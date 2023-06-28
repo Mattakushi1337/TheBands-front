@@ -79,7 +79,7 @@ class BandsViewModel {
     async updateBand(id, band) {
         try {
             const response = await axios.put(`http://192.168.1.106:3000/band/${id}`, band);
-            console.log(response.data);
+            console.log('ddas', response.data, id);
             return true;
         } catch (error) {
             console.error(error);

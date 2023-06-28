@@ -4,6 +4,12 @@ import { Button } from 'react-native-elements';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { observer, useLocalObservable } from 'mobx-react-lite';
 import PeopleViewModel from '../viewmodels/peopleViewModel';
+import { configure } from 'mobx';
+
+configure({
+    enforceActions: 'never',
+    warnAboutDeprecatedActions: false,
+});
 
 const PeopleScreen = observer(() => {
     const navigation = useNavigation();
@@ -51,6 +57,13 @@ const PeopleScreen = observer(() => {
         );
     };
 
+
+    const handleRefresh = () => {
+        viewModel.getForms();
+
+    };
+
+
     return (
         <ImageBackground
             source={require('../pics/YYSC9qTR9HA.jpg')}
@@ -62,7 +75,8 @@ const PeopleScreen = observer(() => {
                     renderItem={renderItem}
                     keyExtractor={(item) => item.id.toString()}
                     ListHeaderComponent={renderHeader}
-                    contentContainerStyle={styles.contentContainer}
+                    onRefresh={handleRefresh}
+                    refreshing={viewModel.isLoading}
                 />
             </View>
         </ImageBackground>

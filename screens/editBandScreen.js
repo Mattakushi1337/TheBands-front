@@ -2,12 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { View, TextInput, Button, StyleSheet, TouchableOpacity, ImageBackground, Text, ScrollView, KeyboardAvoidingView } from 'react-native';
 import BandsViewModel from '../viewmodels/bandsViewModel';
 
+
 function EditBandScreen({ route, navigation }) {
     const { userID } = route.params;
-    const [viewModel] = useState(new BandsViewModel()); // Создаем экземпляр класса в состоянии
-
-    const [band, setForm] = useState({
+    const { id } = route.params
+    const [viewModel] = useState(new BandsViewModel());
+    const [band, setBand] = useState({
+        id: undefined,
         bandName: '',
+        contact: '',
         description: '',
         userID,
     });
@@ -16,12 +19,9 @@ function EditBandScreen({ route, navigation }) {
         navigation.setOptions({ title: 'Изменение анкеты группы' });
         async function fetchBand() {
             const bandData = await viewModel.getMyBand();
+            console.log('ddd', bandData);
             if (bandData) {
-                setForm({
-                    bandName: bandData.bandName,
-                    description: bandData.description,
-                    userID,
-                });
+                setBand(bandData[0]); // Используйте bandData[0] для обновления состояния band
             }
         }
         fetchBand();
@@ -29,9 +29,10 @@ function EditBandScreen({ route, navigation }) {
 
     const handleSave = async () => {
         console.log("band: ", band);
-        const result = await viewModel.updateBand(band.id, band);
+        const result = await viewModel.updateBand(id, band);
+        console.log("result", result);
         if (result) {
-            navigation.navigate('MyBand');
+            navigation.replace('MyBand', { band });
         } else {
             console.log('Error updating band');
         }
@@ -39,7 +40,7 @@ function EditBandScreen({ route, navigation }) {
 
     return (
         <ImageBackground
-            source={require('../pics/KdHNsSYlCKk.jpg')} // Укажите путь к вашему изображению
+            source={require('../pics/KdHNsSYlCKk.jpg')}
             style={styles.backgroundImage}
         >
             <KeyboardAvoidingView behavior="hight" style={styles.container}>
@@ -57,6 +58,13 @@ function EditBandScreen({ route, navigation }) {
                         placeholder="Напишите описание группы"
                         value={band.description}
                         onChangeText={(value) => setBand({ ...band, description: value })}
+                    />
+                    <Text style={styles.label}>Способ связи:</Text>
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Напишите как с вами связаться"
+                        value={band.contact}
+                        onChangeText={(value) => setBand({ ...band, contact: value })}
                     />
                     <TouchableOpacity style={styles.button} onPress={handleSave}>
                         <Text style={styles.buttonText}>Изменить анкету группы</Text>

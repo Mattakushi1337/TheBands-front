@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, TextInput, Button, StyleSheet, Text, ScrollView, TouchableOpacity, KeyboardAvoidingView, ImageBackground } from 'react-native';
 import MyFormViewModel from '../viewmodels/myFormViewModel';
-import { useNavigation } from '@react-navigation/native';
 
 function EditFormScreen({ route, navigation }) {
     const { userID } = route.params;
@@ -30,7 +29,7 @@ function EditFormScreen({ route, navigation }) {
         console.log("form: ", form);
         if (!isNaN(form.age)) {
             await new MyFormViewModel().updateForm(form.id, form);
-            navigation.navigate('MyForm');
+            navigation.replace('MyForm', { form });
         } else {
             console.log("Age is not a number.");
         }

@@ -1,4 +1,4 @@
-import { makeAutoObservable, runInAction } from 'mobx';
+import { makeAutoObservable, runInAction, configure } from 'mobx';
 import axios from 'axios';
 
 class PeopleViewModel {
@@ -24,6 +24,9 @@ class PeopleViewModel {
 
     async getForms() {
         try {
+            configure({
+                enforceActions: 'never',
+            });
             this.isLoading = true;
             const response = await axios.get('http://192.168.1.106:3000/form/form/all');
             runInAction(() => {

@@ -18,6 +18,7 @@ class MyFormScreen extends React.Component {
         this.setState({ form: form });
     }
 
+    
     handleDelete = async () => {
         const myFormViewModel = new MyFormViewModel();
         await myFormViewModel.deleteForm(this.state.form.id);
@@ -26,9 +27,13 @@ class MyFormScreen extends React.Component {
 
     handleUpdate = async () => {
         const myFormViewModel = new MyFormViewModel();
-        const { id } = this.state.form; // Получаем значение id из состояния формы
-        await myFormViewModel.updateForm(id, this.state.form); // Передаем id вместе с формой
+        const { id } = this.state.form; 
+        await myFormViewModel.updateForm(id, this.state.form); 
         this.props.navigation.navigate('EditForm', { userID: id });
+    };
+
+    home = async () => {
+        this.props.navigation.navigate('Main');
     };
 
     render() {
@@ -60,6 +65,9 @@ class MyFormScreen extends React.Component {
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.button} onPress={this.handleUpdate}>
                         <Text style={styles.buttonText}>Изменить</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.button} onPress={this.home}>
+                        <Text style={styles.buttonText}>Домой</Text>
                     </TouchableOpacity>
                 </View>
             </ImageBackground>

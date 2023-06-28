@@ -25,9 +25,11 @@ class MyBandScreen extends React.Component {
 
     handleUpdate = async () => {
         const bandsViewModel = new BandsViewModel();
-        const { id } = this.state.band; // Получаем значение id из состояния формы
-        await bandsViewModel.updateBand(id, this.state.band); // Передаем id вместе с формой
-        this.props.navigation.navigate('EditBand', { userID: id });
+        const { id } = this.state.band; 
+        console.log("id",id);
+        await bandsViewModel.updateBand(id, this.state.band);
+        console.log("await",await bandsViewModel.updateBand(id, this.state.band));
+        this.props.navigation.navigate('EditBand', { userID: this.state.band.userID, id: this.state.band.id });
     };
 
     handleViewApplications = () => {
@@ -38,6 +40,10 @@ class MyBandScreen extends React.Component {
     handleViewMembers = () => {
         const { id } = this.state.band;
         this.props.navigation.navigate('MyBandMembers', { bandId: id });
+    };
+
+    home = async () => {
+        this.props.navigation.navigate('Main');
     };
 
     render() {
@@ -71,6 +77,9 @@ class MyBandScreen extends React.Component {
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.button} onPress={this.handleViewMembers}>
                         <Text style={styles.buttonText}>Участники моей группы</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.button} onPress={this.home}>
+                        <Text style={styles.buttonText}>Домой</Text>
                     </TouchableOpacity>
                 </View>
             </ImageBackground>

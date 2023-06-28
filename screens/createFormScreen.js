@@ -115,7 +115,7 @@ const CreateProfileScreen = () => {
         try {
             const data = await createFormViewModel.createForm(formData);
             console.log(data);
-            navigation.navigate('People')
+            navigation.navigate('Main')
         } catch (error) {
             console.error(error);
         }
